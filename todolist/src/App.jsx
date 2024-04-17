@@ -3,6 +3,7 @@ import "./App.css"
 import Todo from "./components/Todo"
 import Todoform from "./components/Todoform"
 import Search from './components/Search'
+import Filter from './components/Filter'
 
 function App() {
   // use state permite a renderização após mudança de dados 
@@ -39,6 +40,7 @@ function App() {
   ])
 
   const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("all");
 
     //adicionando as novas tarefas a partir dessa funcao
   const addTodo = (text, category) => {
@@ -76,13 +78,25 @@ function App() {
   return <div className='app'> 
     <h1>Sua lista de tarefas</h1>
     <Search search={search} setSearch={setSearch}/>
+    <Filter filter={filter} setFilter={setFilter}/>
 
     <div className='todo-list' > 
-      {todos.filter((todo) => 
+      {todos
+      .filter((todo) => 
+        filter === "all" 
+        ? true 
+        : filter === "completed" 
+        ? todo.isCompleted 
+        : !todo.isCompleted
+      )
+      .filter((todo) => 
         todo.text.toLowerCase().includes(search.toLowerCase()))
-        .map((todo) => (  /*vamos organizar os to-dos em MAP que percorre os itens TO DO para acessar seus dados */
+      .map((todo) => (  
         <Todo key={todo.id} todo={todo} removeTodo={removeTodo} completeTodo={completeTodo}/> /*adicionando o componente / os dados serão passados daqui para o componente por properties */
-      ))}
+      ))
+      
+      }
+
 
     </div>
 
