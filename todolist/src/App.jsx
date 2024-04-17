@@ -57,11 +57,24 @@ function App() {
     setTodos(filteredTodos);
   }
 
+  const completeTodo = (id) => {
+    const newTodos = [...todos];
+    //vamos usar um MAP, pois ele modifica o array original newTodos
+
+    newTodos.map((todo) => todo.id === id ? todo.isCompleted = !todo.isCompleted : todo);
+    /*
+    loop sobre o array newTodos usando o método map()
+    ? todo.isCompleted = !todo.isCompleted : todo: Este é um operador ternário. Se a condição todo.id === id for verdadeira, o valor de todo.isCompleted será invertido (ou seja, se for true, torna-se false, e vice-versa), caso contrário, o objeto todo será retornado sem qualquer alteração.
+    */
+
+    setTodos(newTodos);
+  }
+
   return <div className='app'> 
     <h1>Sua lista de tarefas</h1>
     <div className='todo-list'> 
       {todos.map((todo) => (  /*vamos organizar os to-dos em MAP que percorre os itens TO DO para acessar seus dados */
-        <Todo key={todo.id} todo={todo} removeTodo={removeTodo}/> /*adicionando o componente / os dados serão passados daqui para o componente por properties */
+        <Todo key={todo.id} todo={todo} removeTodo={removeTodo} completeTodo={completeTodo}/> /*adicionando o componente / os dados serão passados daqui para o componente por properties */
       ))}
 
     </div>
