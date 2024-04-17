@@ -3,7 +3,7 @@ body {
   background-color: #f4f4f4;
   padding: 30px;
   color: #333;
-  background-color:rgb(169, 218, 218);
+  background-image: url('./img/background.jpg');
   background-position: center;
   background-size: cover;
 }
@@ -11,7 +11,7 @@ body {
 .app {
   max-width: 600px;
   margin: 0 auto 300px;
-  background-color: #82b9b8;
+  background-color: #a58057;
   padding: 20px 30px;
   border-radius: 15px;
 }
