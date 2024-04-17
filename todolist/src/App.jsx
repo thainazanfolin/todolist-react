@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import "./App.css"
 
 function App() {
   // use state permite a renderização após mudança de dados 
