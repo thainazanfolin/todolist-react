@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-const Todoform = () => {
+const Todoform = ({ addTodo }) => {
 
     const[value, setValue] = useState("");
     const[category, setCategory] = useState("");
@@ -8,8 +8,9 @@ const Todoform = () => {
     const handleSubmit = (e) =>{    //função para envio do formulario a partir do evento
         e.preventDefault();
         if (!value || !category) return
-        setValue("")
-        setCategory("")
+        addTodo(value, category); //se tiver categoria e texto, adiciona na tarefa e ja renderiza no APP pela função 'addTodo' 
+        setValue("");
+        setCategory("");
 
 
         console.log(value, category);

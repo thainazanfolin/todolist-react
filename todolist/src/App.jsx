@@ -37,6 +37,20 @@ function App() {
 
   ])
 
+    //adicionando as novas tarefas a partir dessa funcao
+  const addTodo = (text, category) => {
+    const newTodos = [...todos, { //todos os todos que já existem + os novos todos
+      id: Math.floor(Math.random()*10000), //id aleatorio
+      text,
+      category,
+      isCompleted: false 
+    }
+  ];
+
+    setTodos(newTodos);
+
+  }
+
   return <div className='app'> 
     <h1>Sua lista de tarefas</h1>
     <div className='todo-list'> 
@@ -46,7 +60,7 @@ function App() {
 
     </div>
 
-    <Todoform />
+    <Todoform addTodo={addTodo}/>
 
 
   </div>
