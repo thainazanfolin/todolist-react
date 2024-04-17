@@ -2,6 +2,7 @@ import { useState } from 'react'
 import "./App.css"
 import Todo from "./components/Todo"
 import Todoform from "./components/Todoform"
+import Search from './components/Search'
 
 function App() {
   // use state permite a renderização após mudança de dados 
@@ -37,6 +38,8 @@ function App() {
 
   ])
 
+  const [search, setSearch] = useState("");
+
     //adicionando as novas tarefas a partir dessa funcao
   const addTodo = (text, category) => {
     const newTodos = [...todos, { //todos os todos que já existem + os novos todos
@@ -68,12 +71,16 @@ function App() {
     */
 
     setTodos(newTodos);
-  }
+  }  
 
   return <div className='app'> 
     <h1>Sua lista de tarefas</h1>
-    <div className='todo-list'> 
-      {todos.map((todo) => (  /*vamos organizar os to-dos em MAP que percorre os itens TO DO para acessar seus dados */
+    <Search search={search} setSearch={setSearch}/>
+
+    <div className='todo-list' > 
+      {todos.filter((todo) => 
+        todo.text.toLowerCase().includes(search.toLowerCase()))
+        .map((todo) => (  /*vamos organizar os to-dos em MAP que percorre os itens TO DO para acessar seus dados */
         <Todo key={todo.id} todo={todo} removeTodo={removeTodo} completeTodo={completeTodo}/> /*adicionando o componente / os dados serão passados daqui para o componente por properties */
       ))}
 
