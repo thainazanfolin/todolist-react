@@ -51,11 +51,17 @@ function App() {
 
   }
 
+  const removeTodo = (id) => {
+    const newTodos = [...todos]
+    const filteredTodos = newTodos.filter(todo => todo.id !== id ? todo : null);
+    setTodos(filteredTodos);
+  }
+
   return <div className='app'> 
     <h1>Sua lista de tarefas</h1>
     <div className='todo-list'> 
       {todos.map((todo) => (  /*vamos organizar os to-dos em MAP que percorre os itens TO DO para acessar seus dados */
-        <Todo key={todo.id} todo={todo}/> /*adicionando o componente / os dados serão passados daqui para o componente por properties */
+        <Todo key={todo.id} todo={todo} removeTodo={removeTodo}/> /*adicionando o componente / os dados serão passados daqui para o componente por properties */
       ))}
 
     </div>
