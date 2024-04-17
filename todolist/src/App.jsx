@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import "./App.css"
 import Todo from "./components/Todo"
+import Todoform from "./components/Todoform"
 
 function App() {
   // use state permite a renderização após mudança de dados 
@@ -36,15 +37,16 @@ function App() {
 
   ])
 
-  return <div className='app'>
+  return <div className='app'> 
     <h1>Sua lista de tarefas</h1>
-    <div className='todo-list'>
+    <div className='todo-list'> 
       {todos.map((todo) => (  /*vamos organizar os to-dos em MAP que percorre os itens TO DO para acessar seus dados */
         <Todo todo={todo}/> /*adicionando o componente / os dados serão passados daqui para o componente por properties */
       ))}
 
     </div>
 
+    <Todoform />
 
 
   </div>
